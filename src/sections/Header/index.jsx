@@ -1,10 +1,12 @@
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import Icon from '../../components/Icon';
 import { IconButton } from '../../components/IconButton';
 import Logo from '../../components/Logo';
+import { Theme } from '../../theme';
 import { Color } from '../../theme/colors';
+import { IconName } from '../../theme/icons';
 import HeaderNavigationButtons from './HeaderNavigationButtons';
 import HeaderNavigationLinks from './HeaderNavigationLinks';
 import HeaderSearchForm from './HeaderSearchForm';
@@ -21,9 +23,9 @@ const StyledTop = styled.div`
   }
 `;
 
-const StyledThemeButton = styled(Button).attrs({
-  color: 'green',
-})``;
+const StyledThemeButton = styled(Button).attrs(({ theme }) => ({
+  color: theme.current === Theme.ADULT ? 'green' : 'orange',
+}))``;
 
 const StyledMenuButton = styled(IconButton)`
   @media (min-width: 768px) {
@@ -53,14 +55,16 @@ const StyledHeaderSearchForm = styled(HeaderSearchForm)`
 `;
 
 function Header() {
+  const { toggleTheme, current } = useTheme();
+
   return (
     <header>
       <Container>
         <StyledTop>
           <Logo />
-          <StyledThemeButton>
-            <Icon name="bike-child" />
-            Детям
+          <StyledThemeButton onClick={toggleTheme}>
+            <Icon name={current === Theme.ADULT ? IconName.BIKE_CHILD : IconName.BIKE_ADULT} />
+            {current === Theme.ADULT ? 'Детям' : 'Взрослым'}
           </StyledThemeButton>
           <StyledMenuButton>
             <Icon name="menu" />

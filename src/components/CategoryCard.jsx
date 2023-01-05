@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { Radius } from '../theme/radiuses';
 import BaseCard from './base/BaseCard';
@@ -30,6 +31,7 @@ const StyledImage = styled.img`
 const StyledName = styled(Typography).attrs({
   as: 'h3',
   variant: 'title3',
+  color: Color.WHITE,
 })`
   position: relative;
 `;
@@ -37,13 +39,14 @@ const StyledName = styled(Typography).attrs({
 const StyledAmount = styled(Typography).attrs({
   as: 'span',
   variant: 'text2',
+  color: Color.WHITE,
 })`
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 2px 4px 4px;
   border-radius: ${Radius[4]};
-  background-color: ${Color.ORANGE_30};
+  background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_30 : Color.GREEN_30)};
 `;
 
 function CategoryCard({ className, image, name, amount, imageAlt }) {

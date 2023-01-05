@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { IconName } from '../theme/icons';
 import { Radius } from '../theme/radiuses';
@@ -67,7 +68,7 @@ const StyledLabel = styled(Typography).attrs({
 })`
   padding: 2px 4px 4px;
   border-radius: ${Radius[4]};
-  background-color: ${Color.GRAY_40};
+  background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.GRAY_40 : Color.WHITE)};
 `;
 
 const StyledIconButtons = styled.div`
@@ -79,7 +80,7 @@ const StyledIconButtons = styled.div`
 `;
 
 const StyledIconButton = styled(IconButton)`
-  background-color: ${Color.GRAY_40};
+  background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.GRAY_40 : Color.WHITE)};
   border-radius: 50%;
   padding: 4px;
 

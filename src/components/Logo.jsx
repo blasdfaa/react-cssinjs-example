@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import { Theme } from '../theme';
 
 const StyledLogo = styled(Link)`
   display: inline-block;
@@ -8,9 +9,16 @@ const StyledLogo = styled(Link)`
 `;
 
 function Logo({ className }) {
+  const { current } = useTheme();
+
   return (
     <StyledLogo to="/" className={className}>
-      <img src="/images/logo-adult.svg" width={128} height={22} alt="" />
+      <img
+        src={current === Theme.ADULT ? '/images/logo-adult.svg' : '/images/logo-child.svg'}
+        width={128}
+        height={22}
+        alt=""
+      />
     </StyledLogo>
   );
 }

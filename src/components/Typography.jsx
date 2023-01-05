@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 
 const Variant = {
@@ -49,10 +50,14 @@ const VariantToCSS = {
   `,
 };
 
-const Typography = styled.p.attrs(({ color, variant }) => ({
-  color: color || Color.WHITE,
-  variant: variant || Variant.TITLE_1,
-}))`
+const Typography = styled.p.attrs(({ theme, color, variant }) => {
+  const defaultColor = theme.current === Theme.ADULT ? Color.WHITE : Color.GRAY_60;
+
+  return {
+    color: color || defaultColor,
+    variant: variant || Variant.TITLE_1,
+  };
+})`
   font-style: normal;
   ${({ variant }) => VariantToCSS[variant]}
 

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { IconName } from '../theme/icons';
 
@@ -42,9 +43,13 @@ const IconNameToIconSize = {
   [IconName.MENU]: Size.LARGE,
 };
 
-const StyledIcon = styled.svg.attrs(({ color }) => ({
-  color: color || Color.ORANGE_30,
-}))`
+const StyledIcon = styled.svg.attrs(({ theme, color }) => {
+  const defaultColor = theme.current === Theme.ADULT ? Color.ORANGE_30 : Color.GREEN_30;
+
+  return {
+    color: color || defaultColor,
+  };
+})`
   ${({ name }) => IconSizeToCSS[IconNameToIconSize[name]]}
 
   color: ${({ color }) => color};

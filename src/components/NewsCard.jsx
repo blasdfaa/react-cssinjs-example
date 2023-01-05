@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import BaseCard from './base/BaseCard';
 import Typography from './Typography';
@@ -26,11 +27,11 @@ const StyledTitle = styled(Typography).attrs({
   variant: 'title4',
 })``;
 
-const StyledDate = styled(Typography).attrs({
+const StyledDate = styled(Typography).attrs(({ theme }) => ({
   as: 'span',
   variant: 'text2',
-  color: Color.ORANGE_30,
-})``;
+  color: theme.current === Theme.ADULT ? Color.ORANGE_30 : Color.GREEN_30,
+}))``;
 
 function NewsCard({ className, title, date, image, imageAlt }) {
   return (

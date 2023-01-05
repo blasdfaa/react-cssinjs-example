@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import BaseButton from './base/BaseButton';
 
@@ -23,16 +24,16 @@ const CSS = css`
   ${({ size }) => SizeToCSS[size]}
 
   background-color: transparent;
-  color: ${Color.WHITE};
+  color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.WHITE : Color.GRAY_60)};
   font-weight: 400;
 
   &:hover,
   &:focus {
-    color: ${Color.ORANGE_20};
+    color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_20 : Color.GREEN_20)};
   }
 
   &:active {
-    color: ${Color.ORANGE_40};
+    color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_40 : Color.GREEN_40)};
   }
 
   &:disabled {

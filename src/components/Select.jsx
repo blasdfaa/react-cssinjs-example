@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { IconName } from '../theme/icons';
 import BaseField from './base/BaseField';
@@ -20,13 +21,13 @@ const StyledSelect = styled(BaseField).attrs({
 
   &:hover {
     + svg {
-      color: ${Color.ORANGE_20};
+      color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_20 : Color.GREEN_20)};
     }
   }
 
   &:hover {
     + svg {
-      color: ${Color.ORANGE_40};
+      color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_40 : Color.GREEN_40)};
     }
   }
 `;

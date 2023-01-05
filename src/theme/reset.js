@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { Theme } from '.';
 import { Color } from './colors';
 import { Font } from './fonts';
 
@@ -8,10 +9,10 @@ export const GlobalResets = createGlobalStyle`
 
     margin: 0;
     padding: 0;
-
-    border: none;
+ 
+    border: none; 
     border-radius: 0;
-
+ 
     background: none;
     box-shadow: none; 
   }
@@ -19,7 +20,7 @@ export const GlobalResets = createGlobalStyle`
   body {
     font-family: ${Font.COMMISSIONER};
     font-weight: 400;
-    background-color: ${Color.GRAY_50};
+    background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.GRAY_50 : Color.WHITE)};
   }
 
   button,

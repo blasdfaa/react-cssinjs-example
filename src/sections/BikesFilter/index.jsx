@@ -4,6 +4,7 @@ import Filter from '../../components/Filter';
 import Icon from '../../components/Icon';
 import Select from '../../components/Select';
 import Toggle from '../../components/Toggle';
+import { Theme } from '../../theme';
 import { Color } from '../../theme/colors';
 import { IconName } from '../../theme/icons';
 import { VisuallyHiddenMixin } from '../../theme/mixins';
@@ -59,7 +60,7 @@ const StyledFiltersList = styled.ul`
     grid-auto-columns: 1fr;
     grid-auto-flow: column;
     gap: 16px;
-    background-color: ${Color.ORANGE_30};
+    background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_30 : Color.GREEN_30)};
     border-radius: ${Radius[4]};
     padding: 4px 6px 8px;
   }

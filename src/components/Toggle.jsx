@@ -1,5 +1,6 @@
 import { useId, useState } from 'react';
 import styled from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { Radius } from '../theme/radiuses';
 import BaseButton from './base/BaseButton';
@@ -34,11 +35,11 @@ const StyledToggle = styled(BaseButton)`
 
   &[aria-checked='true'] {
     &::before {
-      background-color: ${Color.ORANGE_10};
+      background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_10 : Color.GREEN_10)};
     }
 
     &::after {
-      background-color: ${Color.ORANGE_30};
+      background-color: ${({ theme }) => (theme.current === Theme.ADULT ? Color.ORANGE_30 : Color.GREEN_30)};
       left: auto;
       right: 0;
     }
@@ -46,13 +47,15 @@ const StyledToggle = styled(BaseButton)`
     &:hover,
     &:focus {
       &::after {
-        background-color: ${Color.ORANGE_20};
+        background-color: ${({ theme }) =>
+          theme.current === Theme.ADULT ? Color.ORANGE_20 : Color.GREEN_20};
       }
     }
 
     &:active {
       &::after {
-        background-color: ${Color.ORANGE_40};
+        background-color: ${({ theme }) =>
+          theme.current === Theme.ADULT ? Color.ORANGE_40 : Color.GREEN_40};
       }
     }
   }

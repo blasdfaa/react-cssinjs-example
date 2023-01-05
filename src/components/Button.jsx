@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Theme } from '../theme';
 import { Color } from '../theme/colors';
 import { Radius } from '../theme/radiuses';
 import BaseButton from './base/BaseButton';
@@ -75,11 +76,15 @@ const colorToCSS = {
   `,
 };
 
-const Button = styled(BaseButton).attrs(({ size, variant, color }) => ({
-  variant: variant || Variant.FILLED,
-  size: size || Size.MEDIUM,
-  color: color || ButtonColor.ORANGE,
-}))`
+const Button = styled(BaseButton).attrs(({ theme, size, variant, color }) => {
+  const defaultColor = theme.current === Theme.ADULT ? ButtonColor.ORANGE : ButtonColor.GREEN;
+
+  return {
+    variant: variant || Variant.FILLED,
+    size: size || Size.MEDIUM,
+    color: color || defaultColor,
+  };
+})`
   ${({ size }) => sizeToCSS[size]}
   ${({ variant }) => variantToCSS[variant]}
   ${({ color }) => colorToCSS[color]}
